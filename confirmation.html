@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Order Confirmed — The Cup and Mug</title>
+    <link rel="stylesheet" href="index.css" />
+</head>
+<body>
+    <header class="site-header">
+        <div class="container navbar">
+            <h1 class="logo">The Cup and Mug</h1>
+            <nav class="nav-links">
+                <a href="homepage.html">Home</a>
+                <a href="categoryGrid.html">Shop</a>
+                <a href="#">About</a>
+            </nav>
+            <img class="cart-icon" src="img/icon.svg" alt="Shopping cart" />
+        </div>
+    </header>
+ 
+    <section class="confirmation-section">
+        <div class="confirmation-card">
+ 
+            <div class="confirmation-wreath">
+                <img src="img/wreath.png" alt="" onerror="this.style.display='none'" />
+                <span class="confirmation-check">✓</span>
+            </div>
+ 
+            <h2>Order Confirmed</h2>
+            <p>Thank you for your order. Your handmade piece is being carefully prepared and will be with you soon.</p>
+ 
+            <div class="confirmation-ref">
+                <p>Order reference: <strong id="order-ref"></strong></p>
+                <p>Questions? Email us at <strong>heather@thecupandmug.com.au</strong></p>
+            </div>
+ 
+            <a href="categoryGrid.html" class="view-all-btn" style="display:inline-block; margin-top: 2rem">
+                Continue Shopping
+            </a>
+ 
+        </div>
+    </section>
+ 
+    <footer class="site-footer">
+            <div class="container footer-content">
+                <div>
+                    <h4>Get in touch</h4>
+
+                    <p>Phone: 0408 310 409</p>
+                    <p>Email: heather@thecupandmug.com.au</p>
+                </div>
+                <div>
+                    <h4>Where to find us</h4>
+
+                    <p>
+                        153 St. Georges Road<br />
+                        Fitzroy North Victoria AUST.
+                    </p>
+                </div>
+            </div>
+        </footer>
+    <script>
+        const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+        let ref = "CAM-"
+        for (let i = 0; i < 6; i++) {
+            ref += chars[Math.floor(Math.random() * chars.length)]
+        }
+        document.getElementById("order-ref").textContent = ref
+    </script>
+</body>
+</html>

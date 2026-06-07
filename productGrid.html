@@ -1,57 +1,104 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta
-            name="viewport"
-            content="width=device-width, initial-scale=1.0"
-        />
-
-        <title>The Cup and Mug</title>
-
-        <link rel="stylesheet" href="index.css" />
-    </head>
-
-    <body>
-        <header class="site-header">
-            <div class="container navbar">
-                <h1 class="logo">The Cup and Mug</h1>
-
-                <nav class="nav-links">
-                    <a href="homepage.html">Home</a>
-                    <a href="categoryGrid.html">Shop</a>
-                    <a href="#">About</a>
-                </nav>
-
-                <img
-                    class="cart-icon"
-                    src="img/icon.svg"
-                    alt="Shopping cart"
-                />
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Shop — The Cup and Mug</title>
+    <link rel="stylesheet" href="index.css" />
+</head>
+<body>
+    <header class="site-header">
+        <div class="container navbar">
+            <h1 class="logo">The Cup and Mug</h1>
+            <nav class="nav-links">
+                <a href="homepage.html">Home</a>
+                <a href="categoryGrid.html">Shop</a>
+                <a href="#">About</a>
+            </nav>
+            <div style="position:relative; cursor:pointer" onclick="openCart()">
+                <img class="cart-icon" src="img/icon.svg" alt="Shopping cart" />
+                <span id="cart-count" style="
+                    position:absolute; top:-8px; right:-8px;
+                    background:#f0a020; color:white;
+                    border-radius:50%; width:18px; height:18px;
+                    font-size:0.7rem; font-weight:700;
+                    display:flex; align-items:center; justify-content:center;
+                ">0</span>
             </div>
-        </header>
-        <section class = "product-category-grid">
-            <div class="product-card">
-                <div class="product-card__image-wrap">
-                    <img src="your-image.jpg" alt="Product name" class="product-card__img">
-                </div>
-                <div class="product-card__info">
-                    <h4 class="product-card__name">product name</h4>
-                    <div class="product-card__footer">
+        </div>
+    </header>
+
+    <section class="container product-category-grid" id="product-grid"></section>
+
+    <div id="cart-overlay" style="display:none" class="cart-overlay">
+        <button class="cart-overlay-close" onclick="closeCart()">✕</button>
+        <h3>Your Cart</h3>
+        <div id="cart-overlay-items"></div>
+        <div class="cart-overlay-total">
+            <span>Total</span>
+            <span id="cart-overlay-total">$0.00</span>
+        </div>
+        <button type="button" class="btn" style="margin-top:1rem"
+            onclick="window.location.href='checkout.html'">Checkout</button>
+    </div>
+
+    <script src="products.js"></script>
+    <script src="cart.js"></script>
+    <script>
+        // step 1 — read ?category=mugs from the URL
+        const params = new URLSearchParams(window.location.search)
+        const category = params.get("category") || "all"
+
+        // step 2 — loop through products and build cards
+        const grid = document.getElementById("product-grid")
+
+        for (let i = 0; i < products.length; i++) {
+            if (category === "all" || products[i].category === category) {
+                grid.innerHTML += `
+                    <div class="product-card">
+                        <div class="product-card__image-wrap">
+                            <img src="${products[i].image}" alt="${products[i].name}" class="product-card__img">
+                            <button class="product-card__wishlist">♡</button>
+                        </div>
+                        <div class="product-card__info">
+                            <span class="product-card__category">${products[i].category}</span>
+                            <h4 class="product-card__name">${products[i].name}</h4>
+                            <div class="product-card__footer">
+                                <span class="product-card__price">$${products[i].price}.00</span>
+                                <button class="product-card__add" onclick="addToCart(${products[i].id})">Add to Cart</button>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
-            <div class="product-card">
-                <div class="product-card__image-wrap">
-                    <img src="your-image.jpg" alt="Product name" class="product-card__img">
-                </div>
-                <div class="product-card__info">
-                    <h4 class="product-card__name">product name</h4>
-                    <div class="product-card__footer">
-                    </div>
-                </div>
-            </div>
-        </section>
-        
-    </body>
+                `
+            }
+        }
+
+        function openCart() {
+            const cart = getCart()
+            const container = document.getElementById("cart-overlay-items")
+            const totalEl = document.getElementById("cart-overlay-total")
+            container.innerHTML = ""
+
+            if (cart.length === 0) {
+                container.innerHTML = "<p style='opacity:0.5; padding:1rem 0'>Your cart is empty.</p>"
+                totalEl.textContent = "$0.00"
+            } else {
+                for (let i = 0; i < cart.length; i++) {
+                    container.innerHTML += `
+                        <div class="cart-overlay-item">
+                            <span>${cart[i].name} × ${cart[i].quantity}</span>
+                            <span>$${(cart[i].price * cart[i].quantity).toFixed(2)}</span>
+                        </div>
+                    `
+                }
+                totalEl.textContent = "$" + getCartTotal().toFixed(2)
+            }
+            document.getElementById("cart-overlay").style.display = "block"
+        }
+
+        function closeCart() {
+            document.getElementById("cart-overlay").style.display = "none"
+        }
+    </script>
+</body>
 </html>
