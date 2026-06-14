@@ -11,6 +11,7 @@ function getCart() {
 function saveCart(cart) {
     localStorage.setItem("cart", JSON.stringify(cart));
     updateCartCount();
+    renderCartOverlay();
 }
 
 function addToCart(productId, quantity) {
@@ -22,7 +23,6 @@ function addToCart(productId, quantity) {
 
     let product = null;
 
-    // find product manually
     for (let i = 0; i < products.length; i++) {
         if (products[i].id === productId) {
             product = products[i];
@@ -31,7 +31,6 @@ function addToCart(productId, quantity) {
 
     let found = false;
 
-    // check if already in cart
     for (let i = 0; i < cart.length; i++) {
         if (cart[i].id === productId) {
             cart[i].quantity += quantity;
@@ -39,7 +38,6 @@ function addToCart(productId, quantity) {
         }
     }
 
-    // if not found, add new item
     if (found === false) {
         let newItem = {
             id: product.id,
@@ -57,15 +55,18 @@ function addToCart(productId, quantity) {
 function removeFromCart(productId) {
     let cart = getCart();
 
-    let newCart = [];
-
     for (let i = 0; i < cart.length; i++) {
-        if (cart[i].id !== productId) {
-            newCart.push(cart[i]);
+        if (cart[i].id === productId) {
+            cart[i].quantity -= 1;
+
+            if (cart[i].quantity <= 0) {
+                cart.splice(i, 1);
+            }
+            break;
         }
     }
 
-    saveCart(newCart);
+    saveCart(cart);
 }
 
 function getCartTotal() {
@@ -98,11 +99,50 @@ function updateCartCount() {
 
 updateCartCount();
 
+function renderCartOverlay() {
+    const overlay = document.getElementById("cart-overlay");
+    const container = document.getElementById("cart-overlay-items");
+    const totalEl = document.getElementById("cart-overlay-total");
+
+    if (!overlay || !container || !totalEl) {
+        return;
+    }
+
+    const cart = getCart();
+    container.innerHTML = "";
+
+    if (cart.length === 0) {
+        container.innerHTML = "<p style='opacity:0.5; padding:1rem 0'>Your cart is empty.</p>";
+        totalEl.textContent = "$0.00";
+        return;
+    }
+
+    for (let i = 0; i < cart.length; i++) {
+        container.innerHTML += `
+            <div class="cart-overlay-item">
+                <span>${cart[i].name} × ${cart[i].quantity}</span>
+                <div style="display:flex; align-items:center; gap:0.5rem;">
+                    <span>$${(cart[i].price * cart[i].quantity).toFixed(2)}</span>
+                    <button type="button" onclick="removeFromCart(${cart[i].id})" style="padding:0.25rem 0.5rem;">Remove</button>
+                </div>
+            </div>
+        `;
+    }
+
+    totalEl.textContent = "$" + getCartTotal().toFixed(2);
+}
 
 function openCart() {
-    document.getElementById("cart-overlay").style.display = "block"
+    const overlay = document.getElementById("cart-overlay");
+    if (overlay) {
+        renderCartOverlay();
+        overlay.style.display = "block";
+    }
 }
 
 function closeCart() {
-    document.getElementById("cart-overlay").style.display = "none"
+    const overlay = document.getElementById("cart-overlay");
+    if (overlay) {
+        overlay.style.display = "none";
+    }
 }

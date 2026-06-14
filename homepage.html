@@ -14,24 +14,16 @@
 
     <body>
         <header class="site-header">
-            <div class="container navbar">
-                <h1 class="logo">The Cup and Mug</h1>
-
-                <nav class="nav-links">
-                    <a href="homepage.html">Home</a>
-                    <a href="categoryGrid.html">Shop</a>
-                    <a href="#">About</a>
-                </nav>
-
-                <img
-                    class="cart-icon"
-                    src="img/icon.svg"
-                    alt="Shopping cart"
-                />
-            </div>
-            <div id="cart-overlay" style="display:none">
-                <button onclick="closeCart()">✕</button>
-                <p>Your cart stuff here</p>
+            <div class="container">
+                <div class="navbar">
+                    <h1 class="logo">The Cup and Mug</h1>
+                    <nav class="nav-links">
+                        <a href="homepage.html">Home</a>
+                        <a href="categoryGrid.html">Shop</a>
+                        <a href="#">About</a>
+                    </nav>
+                    <img class="cart-icon" src="img/icon.svg" alt="Shopping cart" />
+                </div>
             </div>
         </header>
 
@@ -47,11 +39,10 @@
                 <p>Polish heritage, crafted in Melbourne.</p>
             </div>
 
-            <div class="hero-gallery">
-                <img src="img/image-4.png" alt="Ceramic cup" />
-                <img src="img/image-11.png" alt="Handmade mug" />
-                <img src="img/image-5.png" alt="Pottery collection" />
-                <img src="img/image-6.png" alt="Ceramic plate" />
+            <div class="hero-images">
+                <img src="src/HeroBgLeft.png" class="HeroBgLeft" alt="flowers right" />
+                <img src="src/HeroBgRight.png" class="HeroBgRight" alt="flowers left" />
+
             </div>
         </section>
 
@@ -66,36 +57,33 @@
             <div class="container">
                 <div class="section-header">
                     <h3>New Arrivals</h3>
-                    <a href="#" class="view-all-btn">
-                        View all
-                    </a>
                 </div>
-                <div class="product-grid">
-                    <img src="img/image-7.png" alt="Ceramic product" />
-                    <img src="img/image-8.png" alt="Ceramic product" />
-                    <img src="img/image-9.png" alt="Ceramic product" />
-                    <img src="img/image-10.png" alt="Ceramic product" />
-                    <img src="img/image-12.png" alt="Ceramic product" />
+                <div class="product-card-row">
+                    <div class="homepage-product-card">
+                        <img src="src/Product1.png" alt="Ceramic product" class="homepage-product-image">
+                        <img src="src/flourish.png" alt="" class="flourish-left">
+                    </div>
+                    <div class="homepage-product-card">
+                        <img src="src/Product2.png" alt="Ceramic product" class="homepage-product-image">
+                        <img src="src/flourish.png" alt="" class="flourish-right">
+                    </div>
                 </div>
             </div>
+            <a href="categoryGrid.html" class="view-all-btn">View all</a>
         </section>
 
         <footer class="site-footer">
-            <div class="container footer-content">
-                <div>
-                    <h4>Get in touch</h4>
-
-                    <p>Phone: 0408 310 409</p>
-                    <p>Email: heather@thecupandmug.com.au</p>
-                </div>
-
-                <div>
-                    <h4>Where to find us</h4>
-
-                    <p>
-                        153 St. Georges Road<br />
-                        Fitzroy North Victoria AUST.
-                    </p>
+            <div class="container">
+                <div class="footer-content">
+                    <div>
+                        <h4>Get in touch</h4>
+                        <p>Phone: 0408 310 409</p>
+                        <p>Email: heather@thecupandmug.com.au</p>
+                    </div>
+                    <div>
+                        <h4>Where to find us</h4>
+                        <p>153 St. Georges Road<br />Fitzroy North Victoria AUST.</p>
+                    </div>
                 </div>
             </div>
         </footer>

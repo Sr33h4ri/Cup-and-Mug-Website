@@ -45,11 +45,9 @@
     <script src="products.js"></script>
     <script src="cart.js"></script>
     <script>
-        // step 1 — read ?category=mugs from the URL
         const params = new URLSearchParams(window.location.search)
         const category = params.get("category") || "all"
 
-        // step 2 — loop through products and build cards
         const grid = document.getElementById("product-grid")
 
         for (let i = 0; i < products.length; i++) {
@@ -87,7 +85,10 @@
                     container.innerHTML += `
                         <div class="cart-overlay-item">
                             <span>${cart[i].name} × ${cart[i].quantity}</span>
-                            <span>$${(cart[i].price * cart[i].quantity).toFixed(2)}</span>
+                            <div style="display:flex; align-items:center; gap:0.5rem;">
+                                <span>$${(cart[i].price * cart[i].quantity).toFixed(2)}</span>
+                                <button type="button" onclick="removeFromCart(${cart[i].id})" style="padding:0.25rem 0.5rem;">Remove</button>
+                            </div>
                         </div>
                     `
                 }
