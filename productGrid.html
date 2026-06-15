@@ -53,17 +53,17 @@
         for (let i = 0; i < products.length; i++) {
             if (category === "all" || products[i].category === category) {
                 grid.innerHTML += `
-                    <div class="product-card">
+                    <div class="product-card" onclick="window.location.href='product.html?id=${products[i].id}'" style="cursor:pointer;">
                         <div class="product-card__image-wrap">
                             <img src="${products[i].image}" alt="${products[i].name}" class="product-card__img">
-                            <button class="product-card__wishlist">♡</button>
+                            <button class="product-card__wishlist" onclick="event.stopPropagation()">♡</button>
                         </div>
                         <div class="product-card__info">
                             <span class="product-card__category">${products[i].category}</span>
                             <h4 class="product-card__name">${products[i].name}</h4>
                             <div class="product-card__footer">
                                 <span class="product-card__price">$${products[i].price}.00</span>
-                                <button class="product-card__add" onclick="addToCart(${products[i].id})">Add to Cart</button>
+                                <button class="product-card__add" onclick="event.stopPropagation(); addToCart(${products[i].id})">Add to Cart</button>
                             </div>
                         </div>
                     </div>
