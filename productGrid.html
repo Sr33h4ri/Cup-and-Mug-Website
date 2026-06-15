@@ -8,24 +8,21 @@
 </head>
 <body>
     <header class="site-header">
-        <div class="container navbar">
-            <h1 class="logo">The Cup and Mug</h1>
-            <nav class="nav-links">
-                <a href="homepage.html">Home</a>
-                <a href="categoryGrid.html">Shop</a>
-                <a href="#">About</a>
-            </nav>
-            <div style="position:relative; cursor:pointer" onclick="openCart()">
-                <img class="cart-icon" src="img/icon.svg" alt="Shopping cart" />
-                <span id="cart-count" style="
-                    position:absolute; top:-8px; right:-8px;
-                    background:#f0a020; color:white;
-                    border-radius:50%; width:18px; height:18px;
-                    font-size:0.7rem; font-weight:700;
-                    display:flex; align-items:center; justify-content:center;
-                ">0</span>
+            <div class="container">
+                <div class="navbar">
+                    <img class="back-btn" src="src/backIcon.png" alt="Back" onclick="history.back()"/>
+                    <h1 class="logo">The Cup and Mug</h1>
+                    <nav class="nav-links">
+                        <a href="homepage.html">Home</a>
+                        <a href="categoryGrid.html">Shop</a>
+                        <a href="#">About</a>
+                    </nav>
+                    <div style="position:relative; cursor:pointer" onclick="openCart()">
+                        <img class="cart-icon" src="src/cartIcon.png" alt="Shopping cart" />
+                        <span class="cart-count" id="cart-count">0</span>
+                    </div>
+                </div>
             </div>
-        </div>
     </header>
 
     <section class="container product-category-grid" id="product-grid"></section>

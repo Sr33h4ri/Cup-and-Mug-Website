@@ -1,98 +1,114 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta
-            name="viewport"
-            content="width=device-width, initial-scale=1.0"
-        />
+    <!DOCTYPE html>
+    <html lang="en">
+        <head>
+            <meta charset="UTF-8" />
+            <meta
+                name="viewport"
+                content="width=device-width, initial-scale=1.0"
+            />
 
-        <title>The Cup and Mug</title>
+            <title>The Cup and Mug</title>
 
-        <link rel="stylesheet" href="index.css" />
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&family=Hanken+Grotesk:ital,wght@0,100..900;1,100..900&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
-    </head>
+            <link rel="stylesheet" href="index.css" />
+            <link rel="preconnect" href="https://fonts.googleapis.com">
+            <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+            <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&family=Hanken+Grotesk:ital,wght@0,100..900;1,100..900&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
+        </head>
 
-    <body>
-        <header class="site-header">
-            <div class="container">
-                <div class="navbar">
-                    <h1 class="logo">The Cup and Mug</h1>
-                    <nav class="nav-links">
-                        <a href="homepage.html">Home</a>
-                        <a href="categoryGrid.html">Shop</a>
-                        <a href="#">About</a>
-                    </nav>
-                    <img class="cart-icon" src="img/icon.svg" alt="Shopping cart" />
-                </div>
-            </div>
-        </header>
-
-        <section class="hero">
-            <div class="hero-overlay"></div>
-
-            <div class="hero-content">
-                <h2>
-                    The Cup <br />
-                    and Mug
-                </h2>
-
-                <p>Polish heritage, crafted in Melbourne.</p>
-            </div>
-
-            <div class="hero-images">
-                <img src="src/HeroBgLeft.png" class="HeroBgLeft" alt="flowers right" />
-                <img src="src/HeroBgRight.png" class="HeroBgRight" alt="flowers left" />
-
-            </div>
-        </section>
-
-
-        <section class="products-section">
-            <div class="container">
-                <div class="section-header">
-                    <h3>New Arrivals</h3>
-                </div>
-                <div class="product-card-row">
-                    <div class="homepage-product-card">
-                        <img src="src/Product1.png" alt="Ceramic product" class="homepage-product-image">
-                        <img src="src/flourish.png" alt="" class="flourish-left">
-                    </div>
-                    <div class="homepage-product-card">
-                        <img src="src/Product2.png" alt="Ceramic product" class="homepage-product-image">
-                        <img src="src/flourish.png" alt="" class="flourish-right">
+        <body>
+            <header class="site-header">
+                <div class="container">
+                    <div class="navbar">
+                        <img class="back-btn" src="src/backIcon.png" alt="Back" onclick="history.back()"/>
+                        <h1 class="logo">The Cup and Mug</h1>
+                        <nav class="nav-links">
+                            <a href="homepage.html">Home</a>
+                            <a href="categoryGrid.html">Shop</a>
+                            <a href="#">About</a>
+                        </nav>
+                        <div style="position:relative; cursor:pointer" onclick="openCart()">
+                            <img class="cart-icon" src="src/cartIcon.png" alt="Shopping cart" />
+                            <span class="cart-count" id="cart-count">0</span>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <a href="categoryGrid.html" class="view-all-btn">View all</a>
-        </section>
+            </header>
 
-        <section class="quote-section">
-            <div class="container">
-                <blockquote>
-                    “No two pieces alike. All made by hand.”
-                </blockquote>
-            </div>
-        </section>
+            <section class="hero">
+                <div class="hero-overlay"></div>
 
-        <footer class="site-footer">
-            <div class="container">
-                <div class="footer-content">
-                    <div>
-                        <h4>Get in touch</h4>
-                        <p>Phone: 0408 310 409</p>
-                        <p>Email: heather@thecupandmug.com.au</p>
+                <div class="hero-content">
+                    <h2>
+                        The Cup <br />
+                        and Mug
+                    </h2>
+
+                    <p>Polish heritage, crafted in Melbourne.</p>
+                </div>
+
+                <div class="hero-images">
+                    <img src="src/HeroBgLeft.png" class="HeroBgLeft" alt="flowers right" />
+                    <img src="src/HeroBgRight.png" class="HeroBgRight" alt="flowers left" />
+
+                </div>
+            </section>
+
+
+            <section class="products-section">
+                <div class="container">
+                    <div class="section-header">
+                        <h3>New Arrivals</h3>
                     </div>
-                    <div>
-                        <h4>Where to find us</h4>
-                        <p>153 St. Georges Road<br />Fitzroy North Victoria AUST.</p>
+                    <div class="product-card-row">
+                        <div class="homepage-product-card">
+                            <img src="src/Product1.png" alt="Ceramic product" class="homepage-product-image">
+                            <img src="src/flourish.png" alt="" class="flourish-left">
+                        </div>
+                        <div class="homepage-product-card">
+                            <img src="src/Product2.png" alt="Ceramic product" class="homepage-product-image">
+                            <img src="src/flourish.png" alt="" class="flourish-right">
+                        </div>
                     </div>
                 </div>
+                <a href="categoryGrid.html" class="view-all-btn">View all</a>
+            </section>
+
+            <section class="quote-section">
+                <div class="container">
+                    <blockquote>
+                        “No two pieces alike. All made by hand.”
+                    </blockquote>
+                </div>
+            </section>
+
+            <footer class="site-footer">
+                <div class="container">
+                    <div class="footer-content">
+                        <div>
+                            <h4>Get in touch</h4>
+                            <p>Phone: 0408 310 409</p>
+                            <p>Email: heather@thecupandmug.com.au</p>
+                        </div>
+                        <div>
+                            <h4>Where to find us</h4>
+                            <p>153 St. Georges Road<br />Fitzroy North Victoria AUST.</p>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+
+            <div id="cart-overlay" style="display:none" class="cart-overlay">
+                <button class="cart-overlay-close" onclick="closeCart()">✕</button>
+                <h3>Your Cart</h3>
+                <div id="cart-overlay-items"></div>
+                <div class="cart-overlay-total">
+                    <span>Total</span>
+                    <span id="cart-overlay-total">$0.00</span>
+                </div>
+                <button type="button" class="btn" style="margin-top:1rem"
+                    onclick="window.location.href='checkout.html'">Checkout</button>
             </div>
-        </footer>
-        <script src="products.js"></script>
-        <script src="cart.js"></script>
-    </body>
-</html>
+            <script src="products.js"></script>
+            <script src="cart.js"></script>
+        </body>
+    </html>

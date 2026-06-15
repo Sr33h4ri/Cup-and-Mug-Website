@@ -68,6 +68,22 @@ body {
     height: 24px;
 }
 
+.cart-count{
+    position:absolute;
+    top:-8px;
+    right:-8px;
+    background:#f0a020; 
+    color:white;
+    border-radius:50%; 
+    width:18px; 
+    height:18px;
+    font-size:0.7rem; 
+    font-weight:700;
+    display:flex; 
+    align-items:center; 
+    justify-content:center;
+}
+
 .back-btn {
     background: none;
     border: none;
