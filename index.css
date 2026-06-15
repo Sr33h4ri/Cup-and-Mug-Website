@@ -534,10 +534,11 @@ span.price {
     right: 0;
     width: 320px;
     height: 100vh;
-    background: #fdf6ec;
+    background: #2a2693;
     box-shadow: -4px 0 24px rgba(0,0,0,0.2);
     z-index: 999;
     padding: 2rem;
+    color: #fdf6ec;
 }
 
 .cart-overlay h3 {
