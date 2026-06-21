@@ -19,7 +19,6 @@
             <header class="site-header">
                 <div class="container">
                     <div class="navbar">
-                        <img class="back-btn" src="src/backIcon.png" alt="Back" onclick="history.back()"/>
                         <h1 class="logo">The Cup and Mug</h1>
                         <nav class="nav-links">
                             <a href="homepage.html">Home</a>
@@ -34,14 +33,34 @@
                 </div>
             </header>
 
+            <section class="hero">
+                <div class="hero-overlay"></div>
 
-            
+                <div class="hero-content">
+                    <h2>
+                        The Cup <br />
+                        and Mug
+                    </h2>
+
+                    <p>Polish heritage, crafted in Melbourne.</p>
+                </div>
+
+                <div class="hero-images">
+                    <img src="src/HeroBgLeft.png" class="HeroBgLeft" alt="flowers right" />
+                    <img src="src/HeroBgRight.png" class="HeroBgRight" alt="flowers left" />
+
+                </div>
+            </section>
 
 
             <section class="products-section">
                 <div class="container">
-                    <div class="section-header">
-                        <h3>New Arrivals</h3>
+                    <div class="Heading-Title">
+                        <div class="heading-flourish">
+                            <img src="src/headingFlourish.png" alt="" class="heading-flourish-left">
+                            <h3>New Arrivals</h3>
+                            <img src="src/headingFlourish.png" alt="" class="heading-flourish-right">
+                        </div>
                     </div>
                     <div class="product-card-row">
                         <div class="homepage-product-card">
@@ -53,19 +72,21 @@
                             <img src="src/flourish.png" alt="" class="flourish-right">
                         </div>
                     </div>
+                    <a href="categoryGrid.html" class="view-all-btn">View all</a>
                 </div>
-                <a href="categoryGrid.html" class="view-all-btn">View all</a>
+                
             </section>
 
-            <section class="quote-section">
-                <div class="container">
-                    <blockquote>
-                        “No two pieces alike. All made by hand.”
-                    </blockquote>
-                </div>
-            </section>
 
             <footer class="site-footer">
+                <section class="quote-section">
+                    <div class="container">
+                        <blockquote>
+                            “No two pieces alike. All made by hand.”
+                        </blockquote>
+                        <img src="src/homepagePattern.png" class="overlay">
+                    </div>
+                </section>
                 <div class="container">
                     <div class="footer-content">
                         <div>
@@ -80,11 +101,14 @@
                     </div>
                 </div>
             </footer>
-
+            
+            <div id="cart-backdrop" class="cart-backdrop" onclick="closeCart()"></div>
             <div id="cart-overlay" style="display:none" class="cart-overlay">
                 <button class="cart-overlay-close" onclick="closeCart()">✕</button>
-                <h3>Your Cart</h3>
+                <h2 class="cart-overlay-title">Cart</h2>
+                <hr class="cart-overlay-divider">
                 <div id="cart-overlay-items"></div>
+                <hr class="cart-overlay-divider">
                 <div class="cart-overlay-total">
                     <span>Total</span>
                     <span id="cart-overlay-total">$0.00</span>

@@ -104,9 +104,7 @@ function renderCartOverlay() {
     const container = document.getElementById("cart-overlay-items");
     const totalEl = document.getElementById("cart-overlay-total");
 
-    if (!overlay || !container || !totalEl) {
-        return;
-    }
+    if (!overlay || !container || !totalEl) return;
 
     const cart = getCart();
     container.innerHTML = "";
@@ -118,31 +116,50 @@ function renderCartOverlay() {
     }
 
     for (let i = 0; i < cart.length; i++) {
+        const product = products.find(p => p.id === cart[i].id);
+        const image = product ? product.image : "";
         container.innerHTML += `
             <div class="cart-overlay-item">
-                <span>${cart[i].name} × ${cart[i].quantity}</span>
-                <div style="display:flex; align-items:center; gap:0.5rem;">
-                    <span>$${(cart[i].price * cart[i].quantity).toFixed(2)}</span>
-                    <button type="button" onclick="removeFromCart(${cart[i].id})" style="padding:0.25rem 0.5rem;">Remove</button>
+                <img src="${image}" alt="${cart[i].name}" class="cart-item-img">
+                <div class="cart-item-info">
+                    <span class="cart-item-name">${cart[i].name}</span>
+                    <div class="cart-item-qty">
+                        <button onclick="removeFromCart(${cart[i].id})">−</button>
+                        <span>${cart[i].quantity}</span>
+                        <button onclick="addToCart(${cart[i].id})">+</button>
+                    </div>
                 </div>
+                <span class="cart-item-price">$${(cart[i].price * cart[i].quantity).toFixed(2)}</span>
+                <button class="cart-item-remove" onclick="removeAllFromCart(${cart[i].id})">✕</button>
             </div>
         `;
     }
 
     totalEl.textContent = "$" + getCartTotal().toFixed(2);
 }
-
 function openCart() {
     const overlay = document.getElementById("cart-overlay");
-    if (overlay) {
+    const backdrop = document.getElementById("cart-backdrop");
+
+    if (overlay && backdrop) {
         renderCartOverlay();
         overlay.style.display = "block";
+        backdrop.style.display = "block";
     }
 }
 
 function closeCart() {
     const overlay = document.getElementById("cart-overlay");
-    if (overlay) {
+    const backdrop = document.getElementById("cart-backdrop");
+
+    if (overlay && backdrop) {
         overlay.style.display = "none";
+        backdrop.style.display = "none";
     }
+}
+
+function removeAllFromCart(productId) {
+    let cart = getCart();
+    cart = cart.filter(item => item.id !== productId);
+    saveCart(cart);
 }
