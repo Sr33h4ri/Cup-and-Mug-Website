@@ -21,7 +21,7 @@
                     <img class="back-btn" src="src/backIcon.png" alt="Back" onclick="history.back()"/>
                     <h1 class="logo">The Cup and Mug</h1>
                     <nav class="nav-links">
-                        <a href="homepage.html">Home</a>
+                        <a href="index.html">Home</a>
                         <a href="categoryGrid.html">Shop</a>
                         <a href="#">About</a>
                     </nav>
@@ -33,52 +33,33 @@
             </div>
     </header>
  
-    <main class="container" style="padding: 4rem 0 6rem; display:flex; gap:4rem; align-items:flex-start;">
- 
-        <!-- Left: image -->
-        <div style="flex:0 0 420px; border-radius:16px; overflow:hidden;">
-            <img id="product-image" src="" alt="" style="width:100%; height:380px; object-fit:cover; display:block;" />
+   <main class="product-page container">
+
+    <div class="product-image-wrapper">
+        <img id="product-image" src="" alt="" class="product-image">
+    </div>
+
+    <div class="product-info">
+        <h2 id="product-name" class="product-title">—</h2>
+        <p id="product-price" class="product-price">—</p>
+        <hr class="product-divider">
+        <p id="product-description" class="product-description"></p>
+        <div class="product-actions">
+            <button id="qty-dec" aria-label="Decrease" class="qty-btn">−</button>
+            <span id="qty-value" class="qty-value">1</span>
+            <button id="qty-inc" aria-label="Increase" class="qty-btn">+</button>
+            <button id="add-to-cart-btn" class="add-to-cart-btn">Add to Cart</button>
         </div>
- 
-        <!-- Right: info -->
-        <div style="flex:1; display:flex; flex-direction:column; gap:0.75rem; padding-top:0.5rem;">
-            <h2 id="product-name" style="font-size:2.8rem; font-weight:700; color:#2a2693; line-height:1.1;">—</h2>
-            <p id="product-price" style="font-size:1.6rem; font-weight:700; color:#151515;">—</p>
-            <hr style="border:none; border-top:2px solid #2a2693; width:200px; margin:0.25rem 0 0.5rem;" />
-            <p id="product-description" style="font-size:1rem; line-height:1.7; color:#444; max-width:380px;"></p>
- 
-            <!-- Quantity + Add to Cart -->
-            <div style="display:flex; align-items:center; gap:1.25rem; margin-top:1.5rem;">
-                <button id="qty-dec" aria-label="Decrease" style="
-                    width:36px; height:36px; border-radius:50%;
-                    border:2px solid #2a2693; background:transparent;
-                    color:#2a2693; font-size:1.3rem; font-weight:700;
-                    cursor:pointer; display:grid; place-items:center;
-                ">−</button>
- 
-                <span id="qty-value" style="font-size:1.2rem; font-weight:700; min-width:1.5rem; text-align:center;">1</span>
- 
-                <button id="qty-inc" aria-label="Increase" style="
-                    width:36px; height:36px; border-radius:50%;
-                    border:2px solid #2a2693; background:transparent;
-                    color:#2a2693; font-size:1.3rem; font-weight:700;
-                    cursor:pointer; display:grid; place-items:center;
-                ">+</button>
- 
-                <button id="add-to-cart-btn" style="
-                    background:#f0a020; color:#fff; border:none;
-                    border-radius:8px; padding:0.75rem 2rem;
-                    font-family:inherit; font-size:1.1rem; font-weight:700;
-                    cursor:pointer;
-                ">Add to Cart</button>
-            </div>
-        </div>
-    </main>
- 
+    </div>
+
+</main>
+    <div id="cart-backdrop" class="cart-backdrop" onclick="closeCart()"></div>
     <div id="cart-overlay" style="display:none" class="cart-overlay">
         <button class="cart-overlay-close" onclick="closeCart()">✕</button>
-        <h3>Your Cart</h3>
+        <h2 class="cart-overlay-title">Cart</h2>
+        <hr class="cart-overlay-divider">
         <div id="cart-overlay-items"></div>
+        <hr class="cart-overlay-divider">
         <div class="cart-overlay-total">
             <span>Total</span>
             <span id="cart-overlay-total">$0.00</span>
@@ -94,13 +75,18 @@
         const productId = parseInt(params.get("id"))
         const product = products.find(p => p.id === productId)
  
-        if (product) {
-            document.title = `${product.name} — The Cup and Mug`
-            document.getElementById("product-name").textContent = product.name
-            document.getElementById("product-price").textContent = `$${product.price}.00`
-            document.getElementById("product-description").textContent = product.description || ""
-            document.getElementById("product-image").src = product.image
-            document.getElementById("product-image").alt = product.name
+       if (!Number.isInteger(productId) || !product) {
+            document.querySelector("main").innerHTML = "<p>Product not found.</p>";
+        } else {
+            document.getElementById("product-name").textContent = product.name;
+            document.getElementById("product-price").textContent = `$${product.price}.00`;
+            document.getElementById("product-description").textContent = product.description || "";
+            document.getElementById("product-image").src = product.image;
+            document.getElementById("product-image").alt = product.name;
+
+            document.getElementById("add-to-cart-btn").addEventListener("click", () => {
+                addToCart(product.id, qty);
+            });
         }
  
         let qty = 1

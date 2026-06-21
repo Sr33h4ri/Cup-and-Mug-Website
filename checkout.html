@@ -22,7 +22,7 @@
                         <img class="back-btn" src="src/backIcon.png" alt="Back" onclick="history.back()"/>
                         <h1 class="logo">The Cup and Mug</h1>
                         <nav class="nav-links">
-                            <a href="homepage.html">Home</a>
+                            <a href="index.html">Home</a>
                             <a href="categoryGrid.html">Shop</a>
                             <a href="#">About</a>
                         </nav>
@@ -112,10 +112,13 @@
                 </div>
             </section>
 
+            <div id="cart-backdrop" class="cart-backdrop" onclick="closeCart()"></div>
             <div id="cart-overlay" style="display:none" class="cart-overlay">
                 <button class="cart-overlay-close" onclick="closeCart()">✕</button>
-                <h3>Your Cart</h3>
+                <h2 class="cart-overlay-title">Cart</h2>
+                <hr class="cart-overlay-divider">
                 <div id="cart-overlay-items"></div>
+                <hr class="cart-overlay-divider">
                 <div class="cart-overlay-total">
                     <span>Total</span>
                     <span id="cart-overlay-total">$0.00</span>
@@ -140,8 +143,8 @@
                         <p>
                             <a href="product.html?id=${item.id}">${item.name} × ${item.quantity}</a>
                             <span class="price">$${(item.price * item.quantity).toFixed(2)}</span>
-                        </p>
-                    `;
+                        </p>`;
+
                     total += item.price * item.quantity;
                     count += item.quantity;
                 });

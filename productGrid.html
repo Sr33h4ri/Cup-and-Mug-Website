@@ -21,7 +21,7 @@
                     <img class="back-btn" src="src/backIcon.png" alt="Back" onclick="history.back()"/>
                     <h1 class="logo">The Cup and Mug</h1>
                     <nav class="nav-links">
-                        <a href="homepage.html">Home</a>
+                        <a href="index.html">Home</a>
                         <a href="categoryGrid.html">Shop</a>
                         <a href="#">About</a>
                     </nav>
@@ -33,8 +33,7 @@
             </div>
     </header>
 
-    <section class="container product-category-grid" id="product-grid"></section>
-
+    <div id="cart-backdrop" class="cart-backdrop" onclick="closeCart()"></div>
     <div id="cart-overlay" style="display:none" class="cart-overlay">
         <button class="cart-overlay-close" onclick="closeCart()">✕</button>
         <h2 class="cart-overlay-title">Cart</h2>
@@ -63,7 +62,6 @@
                     <div class="product-card" onclick="window.location.href='product.html?id=${products[i].id}'" style="cursor:pointer;">
                         <div class="product-card__image-wrap">
                             <img src="${products[i].image}" alt="${products[i].name}" class="product-card__img">
-                            <button class="product-card__wishlist" onclick="event.stopPropagation()">♡</button>
                         </div>
                         <div class="product-card__info">
                             <span class="product-card__category">${products[i].category}</span>
